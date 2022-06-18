@@ -1,0 +1,41 @@
+<template>
+  <div class="max-w-lg mx-auto relative">
+    <pre>
+      {{ projectUsers }}
+    </pre>
+  </div>
+</template>
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      projectUsers: [],
+    };
+  },
+  methods: {
+    /**
+     * Test request
+     */
+    getAllUsersForThisProject() {
+      axios
+        .get(
+            `http://127.0.0.1:8000/alltodos`
+        )
+        .then((res) => {
+          this.projectUsers = res.data;
+        })
+        .catch(() => {
+          this.error = true;
+        });
+    },
+  },
+  /**
+   * When page is mounted, getAllUsersForThisProject() and getAllUsersForThisProject() gets called
+   */
+  mounted() {
+    this.getAllUsersForThisProject();
+  },
+};
+</script>
