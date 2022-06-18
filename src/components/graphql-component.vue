@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { GET_ALL_TODOS_QUERY } from './graphql/queries/allTodos'
+import { GET_ALL_TODOS_QUERY } from '../graphql/queries/allTodos'
 
 export default {
   data() {
