@@ -5,8 +5,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
 
 const httpLink = new HttpLink({
-    uri: 'http://10.0.0.2:5000/graphql'
-})
+    // change to used IP here
+	uri: "http://10.0.0.3:5000/graphql",
+});
 
 // Create the apollo client
 export const apolloClient = new ApolloClient({

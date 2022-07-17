@@ -21,7 +21,8 @@ export default {
     getAllUsersForThisProject() {
       axios
         .get(
-            `http://127.0.0.1:8000/alltodos`
+          // change to used IP here
+          `http://192.168.0.115:8000/alltodos`
         )
         .then((res) => {
           this.projectUsers = res.data;
