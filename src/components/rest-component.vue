@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-lg mx-auto relative">
     <pre>
-      {{ projectUsers }}
+      {{ pdf }}
     </pre>
   </div>
 </template>
@@ -11,21 +11,36 @@ import axios from "axios";
 export default {
   data() {
     return {
-      projectUsers: [],
+      allTodos: [],
+      // To-do: add object URL from PDF blob response
+      pdf: '',
     };
   },
   methods: {
     /**
-     * Test request
+     * GET Request for all todos
      */
-    getAllUsersForThisProject() {
+    getAllTodos() {
       axios
         .get(
           // change to used IP here
-          `http://192.168.0.115:8000/alltodos`
+          `http://10.0.0.4:8000/alltodos`
         )
         .then((res) => {
-          this.projectUsers = res.data;
+          this.allTodos = res.data;
+        })
+        .catch(() => {
+          this.error = true;
+        });
+    },
+    getPDF() {
+      axios
+        .get(
+          // change to used IP here
+          `http://10.0.0.4:8000/download-pdf`
+        )
+        .then((res) => {
+          this.pdf = res.data;
         })
         .catch(() => {
           this.error = true;
@@ -33,10 +48,11 @@ export default {
     },
   },
   /**
-   * When page is mounted, getAllUsersForThisProject() and getAllUsersForThisProject() gets called
+   * When page is mounted, getAllTodos() gets called
    */
   mounted() {
-    this.getAllUsersForThisProject();
+    this.getAllTodos();
+    this.getPDF();
   },
 };
 </script>
