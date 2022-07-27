@@ -1,6 +1,7 @@
 <template>
   <div class="max-w-lg mx-auto relative">
     <pre>
+      {{ allTodos }}
       {{ pdf }}
     </pre>
   </div>
@@ -37,10 +38,17 @@ export default {
       axios
         .get(
           // change to used IP here
-          `http://10.0.0.4:8000/download-pdf`
+          `http://10.0.0.4:8000/download-pdf`,
+          {
+            responseType: "arraybuffer",
+          }
         )
         .then((res) => {
-          this.pdf = res.data;
+          this.allTodos = new Blob([res.data], { type: "application/pdf" });
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(this.allTodos);
+          link.download = "test.pdf";
+          link.click();
         })
         .catch(() => {
           this.error = true;
