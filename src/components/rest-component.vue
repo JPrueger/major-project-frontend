@@ -2,6 +2,8 @@
   <div class="max-w-lg mx-auto relative">
     <pre>
       {{ allTodos }}
+    </pre>
+    <pre>
       {{ pdf }}
     </pre>
   </div>
@@ -13,8 +15,7 @@ export default {
   data() {
     return {
       allTodos: [],
-      // To-do: add object URL from PDF blob response
-      pdf: '',
+      pdf: [],
     };
   },
   methods: {
@@ -44,9 +45,9 @@ export default {
           }
         )
         .then((res) => {
-          this.allTodos = new Blob([res.data], { type: "application/pdf" });
+          this.pdf = new Blob([res.data], { type: "application/pdf" });
           const link = document.createElement("a");
-          link.href = window.URL.createObjectURL(this.allTodos);
+          link.href = window.URL.createObjectURL(this.pdf);
           link.download = "test.pdf";
           link.click();
         })
