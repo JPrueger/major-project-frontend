@@ -7,6 +7,9 @@ export const GET_ALL_TODOS_QUERY = gql`
         id
         title
         description
+        category
+        isComplete
+        document
       }
     }
   }
