@@ -6,7 +6,7 @@ import VueApollo from 'vue-apollo'
 
 const httpLink = new HttpLink({
     // change to used IP here
-	uri: "http://10.0.0.3:5000/graphql",
+	uri: "http://10.0.0.4:5000/graphql",
 });
 
 // Create the apollo client

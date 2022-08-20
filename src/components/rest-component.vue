@@ -3,9 +3,6 @@
     <pre>
       {{ allTodos }}
     </pre>
-    <pre>
-      {{ pdf }}
-    </pre>
   </div>
 </template>
 <script>
@@ -15,7 +12,6 @@ export default {
   data() {
     return {
       allTodos: [],
-      pdf: [],
     };
   },
   methods: {
@@ -26,34 +22,11 @@ export default {
       axios
         .get(
           // change to used IP here
-          `http://10.0.0.4:8000/alltodos`
+          `http://10.0.0.4:8000/all-todos`
         )
         .then((res) => {
           this.allTodos = res.data;
         })
-        .catch(() => {
-          this.error = true;
-        });
-    },
-    getPDF() {
-      axios
-        .get(
-          // change to used IP here
-          `http://10.0.0.4:8000/download-pdf`,
-          {
-            responseType: "arraybuffer",
-          }
-        )
-        .then((res) => {
-          this.pdf = new Blob([res.data], { type: "application/pdf" });
-          const link = document.createElement("a");
-          link.href = window.URL.createObjectURL(this.pdf);
-          link.download = "test.pdf";
-          link.click();
-        })
-        .catch(() => {
-          this.error = true;
-        });
     },
   },
   /**
@@ -61,7 +34,6 @@ export default {
    */
   mounted() {
     this.getAllTodos();
-    this.getPDF();
   },
 };
 </script>
