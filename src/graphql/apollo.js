@@ -17,7 +17,6 @@ export const apolloClient = new ApolloClient({
 })
 
 // install the Vue plugin
-
 Vue.use(VueApollo)
 export const apolloProvider = new VueApollo({
     defaultClient: apolloClient
