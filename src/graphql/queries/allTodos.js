@@ -4,11 +4,11 @@ export const GET_ALL_TODOS_QUERY = gql`
   query test {
     allTodos {
       nodes {
-        # id
-        # title
+        id
+        title
         description
-        # category
-        # isComplete
+        category
+        isComplete
       }
     }
   }
