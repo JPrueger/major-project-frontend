@@ -9,17 +9,16 @@ const httpLink = new HttpLink({
 	uri: "http://10.0.0.4:5000/graphql",
 });
 
-// Create the apollo client
+// create the apollo client
 export const apolloClient = new ApolloClient({
     link: httpLink,
     cache: new InMemoryCache(),
     connectToDevTools: true
 })
 
-// Install the Vue plugin
+// install the Vue plugin
 
 Vue.use(VueApollo)
-
 export const apolloProvider = new VueApollo({
     defaultClient: apolloClient
 })
